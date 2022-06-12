@@ -1,0 +1,45 @@
+﻿@using Antra.CRMApp.Core.Entity
+<!--index.cshtml is a razor view...
+    razor is a viewengine, it will convert the C# code to 
+    the script code which a browser can understand
+-->
+@model IEnumerable<CategoryResponseModel>
+
+<h1>Category index</h1>
+
+<a asp-action="Create" asp-controller="Category" class="btn btn-success">Add Category</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach(var c in Model)
+            {
+               <tr>
+               <td>@c.Id</td>
+               <td>@c.Name</td>
+               <td>@c.Description</td>
+               <td>
+               <span>
+               <a asp-controller="Category" asp-action="Edit" asp-route-id="@c.Id" class="btn btn-primary">Edit</a>
+                   <td>
+                <span>
+                <a asp-controller="Category" asp-action="Delete" asp-route-id="@c.Id" class="btn btn-danger">Delete</a>
+             </span>
+                </td>
+               </span>
+               </td>
+               </tr> 
+
+            }
+        }
+    </tbody>
+</table>
+

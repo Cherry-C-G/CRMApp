@@ -10,12 +10,12 @@ namespace Antra.CRMApp.Core.Entity
     public class Product
     {
         public int Id { get; set; }
-        [Required]
-        [Column(TypeName ="varchar(30)")]
+        [Required, Column(TypeName = "varchar")]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         [Required]
-        public int SupplierId { get; set; }
+        public int VendorId { get; set; }
         [Required]
         public int CategoryId { get; set; }
 

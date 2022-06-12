@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Antra.CRMApp.Core.Model
 {
-    public class RegionModel
+    public class RegionResponseModel
     {
         public int Id { get; set; }
 

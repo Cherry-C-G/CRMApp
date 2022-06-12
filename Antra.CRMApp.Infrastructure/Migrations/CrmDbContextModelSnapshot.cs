@@ -199,15 +199,13 @@ namespace Antra.CRMApp.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("varchar(30)");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("QuantityPerUnit")
                         .HasColumnType("int");
 
                     b.Property<int>("ReorderLevel")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("UnitPrice")

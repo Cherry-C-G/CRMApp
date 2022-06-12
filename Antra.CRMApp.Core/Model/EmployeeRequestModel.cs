@@ -31,6 +31,7 @@ namespace Antra.CRMApp.Core.Model
         [Required, Column(TypeName = "varchar")]
         [MaxLength(20)]
         public string City { get; set; }
+        [Required(ErrorMessage = "Region is required")]
         public int RegionId { get; set; }
         public int PostalCode { get; set; }
         [Required, Column(TypeName = "varchar")]

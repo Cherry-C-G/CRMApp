@@ -10,7 +10,9 @@ namespace Antra.CRMApp.Core.Entity
     public class Region
     {
         public int Id { get; set; }
-        [Required, Column(TypeName = "varchar"), MaxLength(20)]
+        
+        [Required, Column(TypeName = "varchar")]
+        [MaxLength(20)]
         public string Name { get; set; }
     }
 }

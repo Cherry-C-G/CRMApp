@@ -1,5 +1,103 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿
+@model ProductRequestModel
+
+   @if (ViewBag.IsEdit==true)
+{
+    
+    
+        <div class="container">
+            <di class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Product Updated Successfully. Go to <a asp-action="Index" asp-controller="Product" >Product Home Page</a> </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 }
+@ViewBag.message
+
+<form asp-controller="Product" asp-action="Edit" method="post" >
+    <h1 class="display-6">Edit Product</h1>
+    <hr/>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="mb-4">
+                <label asp-for="Name">Name</label>
+                <input asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-4">
+                <label asp-for="VendorId">Vendor ID</label>
+                <select asp-for="VendorId" class="form-control" asp-items="ViewBag.Vendors" >
+                    <option value="">Select a Vendor</option>   
+                    </select>
+                <span asp-validation-for="VendorId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-4">
+                <label asp-for="CategoryId">Category ID</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Vendors" >
+                    <option value="">Select a supplier</option>   
+                    </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="mb-4">
+                <label asp-for="QuantityPerUnit">Quantity Per Unit</label>
+                <input asp-for="QuantityPerUnit" class="form-control"/>
+                <span asp-validation-for="QuantityPerUnit" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-4">
+                <label asp-for="UnitPrice">Unit Price</label>
+                <input asp-for="UnitPrice" class="form-control"/>
+                <span asp-validation-for="UnitPrice" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-4">
+                <label asp-for="UnitsInStock">Units In Stock</label>
+                <input asp-for="UnitsInStock" class="form-control"/>
+                <span asp-validation-for="UnitsInStock" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="mb-4">
+                <label asp-for="UnitsOnOrder">Units On Order</label>
+                <input asp-for="UnitsOnOrder" class="form-control"/>
+                <span asp-validation-for="UnitsOnOrder" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+             <div class="mb-4">
+                <label asp-for="ReorderLevel">Reorder Level</label>
+                <input asp-for="ReorderLevel" class="form-control"/>
+                <span asp-validation-for="ReorderLevel" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-4">
+                <label asp-for="Discontinued">Status</label>
+                <select asp-for="Discontinued" class="form-control">
+                <option value="">Select an option</option> 
+                <option value="True">Discontinued</option>
+                <option value="False">Available</option>
+                </select>
+                <span asp-validation-for="Discontinued" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="submit" value="Edit Product" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+</form>

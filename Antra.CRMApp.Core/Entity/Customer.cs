@@ -22,6 +22,7 @@ namespace Antra.CRMApp.Core.Entity
         [Required, Column(TypeName = "varchar")]
         [MaxLength(20)]
         public string City { get; set; }
+
         public int RegionId { get; set; }
         public int PostalCode { get; set; }
         [Required, Column(TypeName = "varchar")]
@@ -30,6 +31,7 @@ namespace Antra.CRMApp.Core.Entity
         [Required, Column(TypeName = "varchar")]
         [MaxLength(15)]
         public string Phone { get; set; }
+
         public Region Region { get; set; }
     }
 }

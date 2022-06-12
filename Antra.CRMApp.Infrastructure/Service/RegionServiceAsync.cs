@@ -10,36 +10,75 @@ using System.Threading.Tasks;
 
 namespace Antra.CRMApp.Infrastructure.Service
 {
-    public class RegionServiceAsync:IRegionServiceAsync
+    public class RegionServiceAsync : IRegionServiceAsync
     {
         private readonly IRegionRepositoryAsync regionRepositoryAsync;
         public RegionServiceAsync(IRegionRepositoryAsync repo)
         {
             regionRepositoryAsync = repo;
         }
-        public async Task<int> AddRegionAsync(RegionModel model)
+        public async Task<int> AddRegionAsync(RegionRequestModel model)
         {
             Region region = new Region();
             region.Name = model.Name;
-         return await  regionRepositoryAsync.InsertAsync(region);
+            return await regionRepositoryAsync.InsertAsync(region);
         }
 
-        public async Task<IEnumerable<RegionModel>> GetAllAsync()
+        public async Task<int> DeleteRegionAsync(int id)
         {
-          var collection = await regionRepositoryAsync.GetAllAsync();
+            return await regionRepositoryAsync.DeleteAsync(id);
+        }
+
+        public async Task<IEnumerable<RegionResponseModel>> GetAllAsync()
+        {
+            var collection = await regionRepositoryAsync.GetAllAsync();
             if (collection != null)
             {
-                List<RegionModel> regionModels = new List<RegionModel>();
+                List<RegionResponseModel> regionModels = new List<RegionResponseModel>();
                 foreach (var item in collection)
                 {
-                    RegionModel model = new RegionModel();
+                    RegionResponseModel model = new RegionResponseModel();
                     model.Name = item.Name;
-                    model.Id   = item.Id;
+                    model.Id = item.Id;
                     regionModels.Add(model);
                 }
                 return regionModels;
             }
             return null;
+        }
+
+        public async Task<RegionResponseModel> GetByIdAsync(int id)
+        {
+            var item = await regionRepositoryAsync.GetByIdAsync(id);
+            if (item != null)
+            {
+                RegionResponseModel model = new RegionResponseModel();
+                model.Id = item.Id;
+                model.Name = item.Name;
+                return model;
+            }
+            return null;
+        }
+
+        public async Task<RegionRequestModel> GetRegionForEditAsync(int id)
+        {
+            var item = await regionRepositoryAsync.GetByIdAsync(id);
+            if (item != null)
+            {
+                RegionRequestModel model = new RegionRequestModel();
+                model.Id = item.Id;
+                model.Name = item.Name;
+                return model;
+            }
+            return null;
+        }
+
+        public async Task<int> UpdateRegionAsync(RegionRequestModel region)
+        {
+            Region reg = new Region();
+            reg.Id = region.Id;
+            reg.Name = region.Name;
+            return await regionRepositoryAsync.UpdateAsync(reg);
         }
     }
 }

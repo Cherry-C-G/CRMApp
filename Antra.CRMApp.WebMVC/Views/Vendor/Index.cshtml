@@ -1,0 +1,52 @@
+﻿@model IEnumerable<VendorResponseModel>
+<a asp-action="Create" asp-controller="Vendor" class="btn btn-success">Add Vendor</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach(var v in Model)
+            {
+                <tr>
+                   <td>@v.Id</td>
+                   <td>@v.Name</td>
+                   <td>@v.City</td>
+                   <td>@v.Country</td>
+                   <td>@v.Mobile</td>
+                   <td>@v.EmailId</td>
+    <td>
+        @{
+            var discontinuedStatus = "Unavailable";
+            if(@v.IsActive)
+            {
+                discontinuedStatus = "Available";
+            }
+        }
+        @discontinuedStatus
+    </td>
+    <td>
+        <span>
+            <a asp-controller="Vendor" asp-action="Edit" asp-route-id="@v.Id" class="btn btn-primary">Edit</a>
+        </span>
+    </td>
+    <td>
+        <span>
+            <a asp-controller="Vendor" asp-action="Delete"  asp-route-id="@v.Id" class="btn btn-danger">Delete</a>
+        </span>
+    </td>
+</tr> 
+            }
+        }
+    </tbody>
+</table>
