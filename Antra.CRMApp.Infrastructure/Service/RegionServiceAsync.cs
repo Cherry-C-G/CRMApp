@@ -47,38 +47,40 @@ namespace Antra.CRMApp.Infrastructure.Service
             return null;
         }
 
-        public async Task<RegionResponseModel> GetByIdAsync(int id)
+        public async Task<RegionResponseModel> GetRegionByIdAsync(int id)
         {
             var item = await regionRepositoryAsync.GetByIdAsync(id);
             if (item != null)
             {
                 RegionResponseModel model = new RegionResponseModel();
-                model.Id = item.Id;
                 model.Name = item.Name;
+                model.Id = item.Id;
                 return model;
             }
             return null;
         }
 
-        public async Task<RegionRequestModel> GetRegionForEditAsync(int id)
+        public async Task<int> InsertRegionAsync(RegionRequestModel model)
         {
-            var item = await regionRepositoryAsync.GetByIdAsync(id);
-            if (item != null)
+            if (model != null)
             {
-                RegionRequestModel model = new RegionRequestModel();
-                model.Id = item.Id;
-                model.Name = item.Name;
-                return model;
+                Region region = new Region();
+                region.Name = model.Name;
+                return await regionRepositoryAsync.InsertAsync(region);
             }
-            return null;
+            return 0;
         }
 
-        public async Task<int> UpdateRegionAsync(RegionRequestModel region)
+        public async Task<int> UpdateRegionAsync(RegionRequestModel model)
         {
-            Region reg = new Region();
-            reg.Id = region.Id;
-            reg.Name = region.Name;
-            return await regionRepositoryAsync.UpdateAsync(reg);
+            if (model != null)
+            {
+                Region region = new Region();
+                region.Name = model.Name;
+                region.Id = model.Id;
+                return await regionRepositoryAsync.UpdateAsync(region);
+            }
+            return 0;
         }
     }
 }

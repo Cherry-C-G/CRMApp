@@ -16,5 +16,6 @@ namespace Antra.CRMApp.Core.Model
         public string Mobile { get; set; }
         public string EmailId { get; set; }
         public bool IsActive { get; set; }
+        
     }
 }
