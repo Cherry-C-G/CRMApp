@@ -34,13 +34,13 @@ namespace Antra.CRMApp.WebMVC.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Edit(int id)
-        {
-            ViewBag.IsEdit = false;
-            var regionModel = await regionServiceAsync.GetRegionForEditAsync(id);
-            return View(regionModel);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> Edit(int id)
+        //{
+        //    ViewBag.IsEdit = false;
+        //    var regionModel = await regionServiceAsync.GetRegionForEditAsync(id);
+        //    return View(regionModel);
+        //}
         [HttpPost]
         public async Task<IActionResult> Edit(RegionRequestModel model)
         {
